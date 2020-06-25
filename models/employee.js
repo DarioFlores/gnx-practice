@@ -11,8 +11,10 @@ const employeeFields = {
 };
 //dni, birth_date, firsta_name, last_name, gender, hire_date
 const employeeSchema = new Schema(employeeFields);
+const Employee = mongoose.model(employeeSchema, "employee");
 
-const Employee = mongoose.model("Employee", employeeSchema, "employee");
-Employee.createCollection();
+if(!Employee.collection.collection){
+    Employee.createCollection();
+}
 
 module.exports = { employeeFields, Employee };

@@ -12,7 +12,6 @@ if (os.type() === 'Linux') {
   ipName = os.hostname()
 }
 console.log(ipName);
-
 mongoose.connect(`mongodb://${ipName}:27017,${ipName}:27018,${ipName}:27019/practice`, { 
     replicaSet: 'rs',
     useUnifiedTopology: true,
