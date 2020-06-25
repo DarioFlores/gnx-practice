@@ -1,7 +1,7 @@
 const graphql = require('graphql');
 const gnx = require('@simtlix/gnx');
 //salaries-titles-dept_manager-dept_employees
-const Salarie = require('../models/salarie').Salarie/* */
+const Salarie = require('../models/salary').Salary/* */
 const Title = require('../models/title').Ditle/* */
 const Dept_manager = require('../models/dept_manager').Dept_manager/* */
 const Dept_employee = require('../models/dept_employee').Dept_employee/* */

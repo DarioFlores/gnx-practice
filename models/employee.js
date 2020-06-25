@@ -13,7 +13,7 @@ const employeeFields = {
 const employeeSchema = new Schema(employeeFields);
 const Employee = mongoose.model(employeeSchema, "employee");
 
-if(!Employee.collection.collection){
+if (!Employee.collection.collection) {
     Employee.createCollection();
 }
 
