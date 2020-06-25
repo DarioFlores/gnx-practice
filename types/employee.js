@@ -5,7 +5,7 @@ const Salarie = require('../models/salary').Salary/* */
 // const Title = require('../models/title').Ditle/* */
 // const Dept_manager = require('../models/dept_manager').Dept_manager/* */
 // const Dept_employee = require('../models/dept_employee').Dept_employee/* */
-const Empleyee = require('../models/employee').Employee
+const Employyee = require('../models/employee').Employee;
 
 const {
     GraphQLObjectType,
@@ -83,7 +83,7 @@ const EmployeeType = new GraphQLObjectType({
     last_name: String,
     gender: String,
     hire_date: Date,*/
-gnx.connect(Empleyee, EmployeeType , "empleyee", "empleyees");
+gnx.connect(Employyee, EmployeeType , "employee", "employee");
 module.exports = EmployeeType;
 
 // const SalarieType = require("./SalarieType"); /* */
