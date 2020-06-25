@@ -2,9 +2,9 @@ const graphql = require('graphql');
 const gnx = require('@simtlix/gnx');
 //salaries-titles-dept_manager-dept_employees
 const Salarie = require('../models/salary').Salary/* */
-const Title = require('../models/title').Ditle/* */
-const Dept_manager = require('../models/dept_manager').Dept_manager/* */
-const Dept_employee = require('../models/dept_employee').Dept_employee/* */
+// const Title = require('../models/title').Ditle/* */
+// const Dept_manager = require('../models/dept_manager').Dept_manager/* */
+// const Dept_employee = require('../models/dept_employee').Dept_employee/* */
 const Empleyee = require('../models/employee').Employee
 
 const {
@@ -27,50 +27,50 @@ const EmployeeType = new GraphQLObjectType({
         last_name:{type:GraphQLString},
         gender:{type:GraphQLString},
         // hire_date:{type:GraphQLID},
-        salarie:{
-            type: SalarieType,/* */
-            extensions:{
-                relation:{
-                    connectionField:"empId"
-                },
-            },
-        },
-        resolve(parent, args) {
-            return Salarie.findById(parent.SalarieID);
-          },
-        title:{
-            type: TitleType,/* */
-            extensions:{
-                relation:{
-                    connectionField:"empId"
-                },
-            },
-        },
-        resolve(parent, args) {
-            return Title.find({empId:parent.id});
-          },
-        dept_manager:{
-            type: Dept_managerType,/* */
-            extensions:{
-                relation:{
-                    connectionField:"empId"
-                },
-            },
-        },
-        resolve(parent, args) {
-            return Dept_manager.findById(parent.Dept_managerTypeID);
-          },
-        dept_employee:{
-            type: Dept_employeesType,/* */
-            extensions:{
-                relation:{
-                    connectionField:"empId"
-                },
-            },
-        },
-        resolve(parent, args) {
-            return Dept_employee.findById(parent.Dept_employeesID);
-          },
+        // salarie:{
+        //     type: SalarieType,/* */
+        //     extensions:{
+        //         relation:{
+        //             connectionField:"empId"
+        //         },
+        //     },
+        // },
+        // resolve(parent, args) {
+        //     return Salarie.findById(parent.SalarieID);
+        //   },
+        // title:{
+        //     type: TitleType,/* */
+        //     extensions:{
+        //         relation:{
+        //             connectionField:"empId"
+        //         },
+        //     },
+        // },
+        // resolve(parent, args) {
+        //     return Title.find({empId:parent.id});
+        //   },
+        // dept_manager:{
+        //     type: Dept_managerType,/* */
+        //     extensions:{
+        //         relation:{
+        //             connectionField:"empId"
+        //         },
+        //     },
+        // },
+        // resolve(parent, args) {
+        //     return Dept_manager.findById(parent.Dept_managerTypeID);
+        //   },
+        // dept_employee:{
+        //     type: Dept_employeesType,/* */
+        //     extensions:{
+        //         relation:{
+        //             connectionField:"empId"
+        //         },
+        //     },
+        // },
+        // resolve(parent, args) {
+        //     return Dept_employee.findById(parent.Dept_employeesID);
+        //   },
 
 
     })
@@ -86,7 +86,7 @@ const EmployeeType = new GraphQLObjectType({
 gnx.connect(Empleyee, EmployeeType , "empleyee", "empleyees");
 module.exports = EmployeeType;
 
-const SalarieType = require("./SalarieType"); /* */
-const TitleType = require("./TitleType"); /* */
-const Dept_managerType = require("./Dept_managerType"); /* */
-const Dept_employeesType = require("./Dept_employeesType"); /* */
+// const SalarieType = require("./SalarieType"); /* */
+// const TitleType = require("./TitleType"); /* */
+// const Dept_managerType = require("./Dept_managerType"); /* */
+// const Dept_employeesType = require("./Dept_employeesType"); /* */

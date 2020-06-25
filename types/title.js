@@ -13,7 +13,7 @@ const {
 } = graphql;
 
 const titleType = new GraphQLObjectType({
-  name: "StudentType",
+  name: "TitleType",
   description: "Represent Title",
   fields: () => ({
     id: { type: GraphQLID },
