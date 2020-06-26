@@ -1,0 +1,22 @@
+
+version: '3.7'
+
+services:
+    web:
+        build: .
+        depends_on:
+            - db
+        ports: 
+            - "3000:3000"
+        volumes: 
+            - .:/opt/app
+            - /opt/app/node_modules
+            # Permite sincronizar la carpeta de trabajo durante el desarrollo de la app
+    db:
+        image: mongo
+        expose: 
+            - "27017"
+        volumes: 
+            - mongodata:/data/db
+volumes: 
+    mongodata:
