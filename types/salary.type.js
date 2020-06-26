@@ -20,7 +20,7 @@ const Salary = require('../models/salary').Salary;
 const SalaryType = new GraphQLObjectType({
     name: 'SalaryType',
     description: 'Represent salary assigned to a employee',
-    fields: () => Object.assign(AuditableObjectFields,{
+    fields: () => ({
         id: {
             type: GraphQLID
         }, 
@@ -39,7 +39,7 @@ const SalaryType = new GraphQLObjectType({
                 relation: {
                     connectionField: 'empId',
                     embedded: true 
-                }
+                },
             },
             resolve(parent,args){
                 console.log(parent.empId);
