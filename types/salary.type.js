@@ -37,8 +37,7 @@ const SalaryType = new GraphQLObjectType({
             type: EmployeeType,
             extensions: {
                 relation: {
-                    connectionField: 'empId',
-                    embedded: true 
+                    connectionField: 'empId' 
                 },
             },
             resolve(parent,args){
