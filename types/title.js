@@ -25,6 +25,7 @@ const titleType = new GraphQLObjectType({
       extensions: {
         relation: {
           connectionField: "empId",
+          embedded: false // IdInputType
         },
       },
       resolve(parent, args) {

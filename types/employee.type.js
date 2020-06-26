@@ -48,7 +48,7 @@ const EmployeeType = new GraphQLObjectType({
             extensions: {
                 relation: {
                     connectionField: 'empId',
-                    embedded: false
+                    embedded: true // SalaryType
                 }
             },
             resolve(parent,args){
@@ -62,7 +62,7 @@ const EmployeeType = new GraphQLObjectType({
             extensions: {
                 relation: {
                     connectionField: 'empId',
-                    embedded: false
+                    embedded: true // TitleType
                 }
             },
             resolve(parent,args){

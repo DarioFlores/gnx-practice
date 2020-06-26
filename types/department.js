@@ -1,5 +1,6 @@
 const graphql = require("graphql");
 const gnx = require("@simtlix/gnx");
+const Department = require('../models/departments').Department;
 
 const {
   GraphQLObjectType,
