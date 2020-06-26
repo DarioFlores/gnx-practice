@@ -3,3 +3,4 @@ exports.Salary = require('./salary.type');
 exports.Title = require('./title.js');
 exports.Department = require('./department.js');
 exports.DeptManager = require('./dept_manager.js');
+exports.DeptEmployee = require('./dept_employee.type'); 
