@@ -35,5 +35,5 @@ const titleType = new GraphQLObjectType({
 });
 gnx.connect(Title, titleType, "title", "titles");
 module.exports = titleType;
-const EmployeType = require("./employee");
-const { GraphQLDate } = require("graphql-iso-date");
+const EmployeType = require("./employee.type");
+const { GraphQLDate } = require("graphql-iso-date");  

@@ -2,6 +2,7 @@ const gnx = require('@simtlix/gnx');
 const graphql = require('graphql');
 const Employee = require('../models/employee').Employee;
 const Salary = require('../models/salary').Salary;
+const Title = require('../models/title').Title;
 const {AuditableObjectFields} = require('./extended/auditableGraphQLObjectType');
 const graphqlIsoDate = require('graphql-iso-date');
 const {
@@ -55,12 +56,27 @@ const EmployeeType = new GraphQLObjectType({
                     'empId': parent.id
                 })
             }
+        },
+        title: {
+            type: TitleType,
+            extensions: {
+                relation: {
+                    connectionField: 'empId',
+                    embedded: false
+                }
+            },
+            resolve(parent,args){
+                return Title.find({
+                    'empId': parent.id
+                })
+            }
         }
     })
 })
 
 gnx.connect(Employee,EmployeeType,'employee','employess');
-module.exports = EmployeeType
+module.exports = EmployeeType 
 
 const SalaryType = require('./salary.type');
+const TitleType = require('./title');
 

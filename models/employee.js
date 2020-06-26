@@ -24,7 +24,6 @@ const employeeFields  = {
 const employeeSchema = new Schema(employeeFields);
 const Employee = mongoose.model("employee", employeeSchema);
 
-const Employee = mongoose.model('Employee',employeeSchema);
 if(!Employee.collection.collection){
     Employee.createCollection();
 }
