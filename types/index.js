@@ -1,2 +1,2 @@
-exports.City = require('./city.js');
-exports.Categoty = require('./category.js');
+exports.Employee = require('./employee.type');
+exports.Salary = require('./salary.type');
