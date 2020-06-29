@@ -19,7 +19,7 @@ before( done => {
 
     mongoose.connect(urlDB, {...opDB, useCreateIndex: true});
     mongoose.connection.once("open", () => {
-        console.log("connected to database test");
+        // console.log("connected to database test");
     });
     done()
 })
