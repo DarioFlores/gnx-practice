@@ -13,6 +13,10 @@ const {
     GraphQLDate
 } = graphqlIsoDate;
 
+const {
+    ValidateDateinterval
+} = require('../validators/dateInterval.validator')
+
 const Employee = require('../models/employee').Employee;
 const Department = require('../models/departments').Department;
 const DeptManager = require('../models/dept_manager').DeptManager;
@@ -22,6 +26,12 @@ const DeptManager = require('../models/dept_manager').DeptManager;
 const DeptManagerType = new GraphQLObjectType({
     name: 'DeptManagerType',
     description: 'Represent deptManager assigned to a employee and department',
+    extensions: {
+        validations: {
+            CREATE: [ValidateDateinterval],
+            UPDATE: [ValidateDateinterval]
+        }
+    },
     fields: () => ({
         id: {
             type: GraphQLID

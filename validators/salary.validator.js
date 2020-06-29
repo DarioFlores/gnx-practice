@@ -1,11 +1,13 @@
 const gnx = require('@simtlix/gnx');
 const GNXError = gnx.GNXError;
-const Salary = require('../models/salary');
+const {Salary} = require('../models/salary');
 
 const CantDeleteEmployeeWithSalary = {
     validate: async function(typeName, originalObject, materializeObject){
+        console.log('Mira esta linea',originalObject);
+        
         const salary = await Salary.findOne({
-            'empId' : originalObject.empId
+            'empId' : originalObject
         })
 
         if(salary){

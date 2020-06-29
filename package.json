@@ -4,7 +4,8 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "dev": "nodemon main.js"
+    "dev": "nodemon main.js",
+    "test": "NODE_ENV=test nodemon --exec 'mocha -R min'"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +16,10 @@
     "express-graphql": "^0.9.0",
     "graphql": "^15.1.0",
     "graphql-iso-date": "^3.6.1",
-    "mongoose": "^5.9.19"
+    "mocha": "^8.0.1",
+    "mongoose": "^5.9.19",
+    "node-env-file": "^0.1.8",
+    "supertest": "^4.0.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.3",

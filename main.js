@@ -1,40 +1,9 @@
-const express = require("express");
+const app = require('./app.js');
 const gnx = require("@simtlix/gnx");
 const graphqlHTTP = require("express-graphql");
-const mongoose = require("mongoose");
-var os = require("os");
 
-const app = express();
-let ipName;
-if (os.type() === "Linux") {
-    ipName = "localhost";
-} else {
-    ipName = os.hostname();
-}
 
-let urlDB;
-let opDB;
-const run_rs = true;
-if (run_rs) {
-  urlDB = `mongodb://${ipName}:27017,${ipName}:27018,${ipName}:27019/practice`;
-  opDB = {
-    replicaSet: "rs",
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-  };
-} else {
-  urlDB = `mongodb://${ipName}:27017/practice`;
-  opDB = {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-  };
-}
-
-mongoose.connect(urlDB, opDB);
-mongoose.connection.once("open", () => {
-    console.log("connected to database");
-});
-
+const port = process.env.NODE_PORT || 3000
 const types = require("./types");
 const includedTypes = Object.values(types);
 // Crea automaticamente las       Querys     y   Mutations
@@ -51,6 +20,6 @@ app.use(
     })
 );
 
-app.listen(3000, () => {
-    console.log("Listening on port 3000");
+app.listen(port, () => {
+    console.log(`Listening on port ${port}`);
 });
