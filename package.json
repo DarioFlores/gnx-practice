@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "dev": "nodemon main.js",
-    "test": "mocha"
+    "test": "NODE_ENV=test nodemon --exec 'mocha -R min'"
   },
   "keywords": [],
   "author": "",
