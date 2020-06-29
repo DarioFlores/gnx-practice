@@ -14,9 +14,19 @@ const {
     GraphQLObjectType
 } = graphql
 
+const {
+    ValidateDateinterval
+} = require('../validators/dateInterval.validator')
+
 const DeptEmployeeType = new GraphQLObjectType({
     name:'DeptEmployee',
     description: 'Represent deptEmployee assigned to a employee and department',
+    extensions: {
+        validations: {
+            CREATE: [ValidateDateinterval],
+            UPDATE: [ValidateDateinterval]
+        }
+    },
     fields: () => ({
         id: {
             type: GraphQLID
