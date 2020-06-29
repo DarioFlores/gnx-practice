@@ -13,6 +13,10 @@ const {
     GraphQLDate
 } = graphqlIsoDate;
 
+const { 
+    ValidateDateinterval
+} = require('../validators/dateInterval.validator');
+
 const Employee = require('../models/employee').Employee;
 const Salary = require('../models/salary').Salary;
 
@@ -20,6 +24,12 @@ const Salary = require('../models/salary').Salary;
 const SalaryType = new GraphQLObjectType({
     name: 'SalaryType',
     description: 'Represent salary assigned to a employee',
+    extensions: {
+        validations: {
+            CREATE: [ValidateDateinterval],
+            UPDATE: [ValidateDateinterval]
+        }
+    },
     fields: () => ({
         id: {
             type: GraphQLID

@@ -4,7 +4,7 @@ const graphqlIsoDate = require('graphql-iso-date');
 const Employee = require('../models/employee').Employee;
 const Department = require('../models/departments').Department;
 const DeptEmployee = require('../models/dept_employee').DeptEmployee;
- 
+const CantBeSameEmployeeWithTwoTitlesDeptEmployee = require('../validators/deptEmployee.validator').CantBeSameEmployeeWithTwoTitlesDeptEmployee; 
 const {
     GraphQLDate
 } = graphqlIsoDate
@@ -14,9 +14,19 @@ const {
     GraphQLObjectType
 } = graphql
 
+const {
+    ValidateDateinterval
+} = require('../validators/dateInterval.validator')
+
 const DeptEmployeeType = new GraphQLObjectType({
     name:'DeptEmployee',
     description: 'Represent deptEmployee assigned to a employee and department',
+    extensions: {
+        validations: {
+            CREATE: [ValidateDateinterval,CantBeSameEmployeeWithTwoTitlesDeptEmployee],
+            UPDATE: [ValidateDateinterval,CantBeSameEmployeeWithTwoTitlesDeptEmployee]
+        }
+    },
     fields: () => ({
         id: {
             type: GraphQLID

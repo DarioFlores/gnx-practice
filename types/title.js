@@ -12,9 +12,19 @@ const {
   GraphQL,
 } = graphql;
 
+const {
+  ValidateDateinterval
+} = require('../validators/dateInterval.validator');
+
 const titleType = new GraphQLObjectType({
   name: "TitleType",
   description: "Represent Title",
+  extensions: {
+    validations: {
+      CREATE: [ValidateDateinterval],
+      UPDATE: [ValidateDateinterval]
+    }
+  },
   fields: () => ({
     id: { type: GraphQLID },
     title: { type: GraphQLString },
