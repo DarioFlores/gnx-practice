@@ -18,9 +18,25 @@ const {
     GraphQLDate
 } = graphqlIsoDate
 
+const {
+    ValidateAge,
+    ValidateDni
+} = require('../validators/employee.validator');
+
+const {
+    CantDeleteEmployeeWithSalary
+} = require('../validators/salary.validator');
+
 const EmployeeType = new GraphQLObjectType({
     name: 'EmployeeType',
     description: 'Represent Employee',
+    extensions: {
+        validations: {
+            CREATE: [ValidateDni,ValidateAge],
+            UPDATE: [ValidateAge,ValidateDni],
+            DELETE: [CantDeleteEmployeeWithSalary]
+        }
+    },
     fields: () => Object.assign(AuditableObjectFields,{
         id: {
             type: GraphQLID
