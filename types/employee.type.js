@@ -27,6 +27,15 @@ const {
     CantDeleteEmployeeWithSalary
 } = require('../validators/salary.validator');
 
+const {
+    CantDeleteEmployeeWithTitle
+} = require('../validators/title.validator');
+
+const {
+    CantDeleteEmployeeWithDepartment_employee,
+    CantDeleteEmployeeWithDepartment_manager
+} = require('../validators/dept_relation.validator');
+
 const EmployeeType = new GraphQLObjectType({
     name: 'EmployeeType',
     description: 'Represent Employee',
@@ -34,7 +43,12 @@ const EmployeeType = new GraphQLObjectType({
         validations: {
             CREATE: [ValidateDni,ValidateAge],
             UPDATE: [ValidateAge,ValidateDni],
-            DELETE: [CantDeleteEmployeeWithSalary]
+            DELETE: [
+                CantDeleteEmployeeWithSalary,
+                CantDeleteEmployeeWithTitle,
+                CantDeleteEmployeeWithDepartment_employee,
+                CantDeleteEmployeeWithDepartment_manager
+            ]
         }
     },
     fields: () => Object.assign(AuditableObjectFields,{
