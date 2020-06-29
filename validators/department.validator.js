@@ -1,9 +1,13 @@
 const gnx = require('@simtlix/gnx');
 const GNXError = gnx.GNXError;
-const Department = require('../models/departments');
+const {Department} = require('../models/departments');
 
 const ValidateName = {
     validate: async function(typeName, originalObject, materialiazeObject){
+        //console.log('Linea que quiero',materialiazeObject);
+        //console.log(typeName);
+        //console.log(originalObject);
+        
         const department = await Department.findOne({
             dept_name: materialiazeObject.dept_name
         })
