@@ -4,7 +4,7 @@ const graphqlIsoDate = require('graphql-iso-date');
 const Employee = require('../models/employee').Employee;
 const Department = require('../models/departments').Department;
 const DeptEmployee = require('../models/dept_employee').DeptEmployee;
-const CantBeSameEmployeeWithTwoTitlesDeptEmployee = require('../validators/deptEmployee.validator').CantBeSameEmployeeWithTwoTitlesDeptEmployee; 
+const CantBeSameEmployeeWithTwoTitlesDeptEmployee = require('../validators/deptEmployee.validators').CantBeSameEmployeeWithTwoTitlesDeptEmployee; 
 const {
     GraphQLDate
 } = graphqlIsoDate

@@ -26,5 +26,5 @@ class CantBeSameEmployeeWithTwoTitlesDeptEmployeeError extends GNXError {
   }
   
   module.exports = {
-    CantBeSameEmployeeWithTwoTitlesDeptEmployee,
+    CantBeSameEmployeeWithTwoTitlesDeptEmployee
   };
