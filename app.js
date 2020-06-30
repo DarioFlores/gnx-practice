@@ -5,6 +5,15 @@ let env = require('node-env-file'); // .env file
 env(__dirname + '/.env');
 
 const app = express();
+const cors = require('cors'),
+bodyParser = require('body-parser');
+
+app.use(cors());
+
+// Add Middlewares
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 let ipName;
 if (os.type() === "Linux") {
     ipName = "localhost";
