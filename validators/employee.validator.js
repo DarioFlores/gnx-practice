@@ -15,7 +15,7 @@ const ValidateDni = {
         }
     }
 }
-
+ 
 class DuplicateDniError extends GNXError {
     constructor(typename){
         super(
