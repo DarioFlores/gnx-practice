@@ -24,7 +24,4 @@ const employeeFields  = {
 const employeeSchema = new Schema(employeeFields);
 const Employee = mongoose.model("employee", employeeSchema);
 
-if(!Employee.collection.collection){
-    Employee.createCollection();
-}
 module.exports = {Employee,employeeFields}  

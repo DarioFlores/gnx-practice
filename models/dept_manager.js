@@ -10,7 +10,4 @@ const deptManagerFields = {
 const deptManagerSchema = new Schema(deptManagerFields);
 const DeptManager = mongoose.model('DeptManager',deptManagerSchema);
 
-if(!DeptManager.collection.collection){
-    DeptManager.createCollection();
-}
 module.exports =  {DeptManager,deptManagerFields};
