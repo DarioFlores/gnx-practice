@@ -15,7 +15,7 @@ const {
 } = graphql
 
 const {
-    ValidateDateinterval
+    ValidateDateinterval, validateDateIntervalEmployee
 } = require('../validators/dateInterval.validator')
 
 const DeptEmployeeType = new GraphQLObjectType({
@@ -23,7 +23,7 @@ const DeptEmployeeType = new GraphQLObjectType({
     description: 'Represent deptEmployee assigned to a employee and department',
     extensions: {
         validations: {
-            CREATE: [ValidateDateinterval,CantBeSameEmployeeWithTwoTitlesDeptEmployee],
+            CREATE: [ValidateDateinterval,CantBeSameEmployeeWithTwoTitlesDeptEmployee,validateDateIntervalEmployee],
             UPDATE: [ValidateDateinterval,CantBeSameEmployeeWithTwoTitlesDeptEmployee]
         }
     },
