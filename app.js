@@ -16,15 +16,17 @@ let urlDB;
 let opDB;
 if (process.env.NODE_ENV != 'test') {
   urlDB = `mongodb://${ipName}:27017,${ipName}:27018,${ipName}:27019/practice`;
-  opDB = {
-    replicaSet: "rs",
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-  };
-  mongoose.connect(urlDB, {...opDB, useCreateIndex: true});
-  mongoose.connection.once("open", () => {
-      console.log("connected to database");
-  });
-} 
+} else{
+  urlDB = `mongodb://${ipName}:27017,${ipName}:27018,${ipName}:27019/practice_test`;
+}
+opDB = {
+  replicaSet: "rs",
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+};
+mongoose.connect(urlDB, {...opDB, useCreateIndex: true});
+mongoose.connection.once("open", () => {
+    console.log("connected to database");
+});
 
 module.exports = app

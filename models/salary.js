@@ -11,7 +11,4 @@ const salaryFields = {
 const salarySchema = new Schema(salaryFields);
 const Salary = mongoose.model('Salary',salarySchema);
 
-if(!Salary.collection.collection){
-    Salary.createCollection();
-}
 module.exports =  {Salary,salaryFields};

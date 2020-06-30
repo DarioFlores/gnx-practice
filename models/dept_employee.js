@@ -11,9 +11,5 @@ const deptEmployeeFields = {
 const deptEmployeeSchema = new Schema(deptEmployeeFields);
 const DeptEmployee = mongoose.model('DeptEmployee',deptEmployeeSchema);
 
-if(!DeptEmployee.collection.collection){
-    DeptEmployee.createCollection();
-}
-
 module.exports = {DeptEmployee,deptEmployeeFields};
 
