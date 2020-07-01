@@ -1,4 +1,5 @@
 const assert = require("assert");
+const { isObject } = require("util");
 const url = "http://localhost:3000";
 const request = require("supertest")(url);
 
@@ -22,82 +23,6 @@ describe("Test de ejemplo", function () {
         done();
       });
   });
-
-  it("Mutation departament", function (done) {
-    const name = Math.random();
-    request
-      .post("/graphql")
-      .send({
-        query: `mutation{
-            adddepartment(input: {
-                dept_name:"${name}"
-            }){
-                id
-                dept_name
-            }
-        }`,
-      })
-      .expect(200)
-      .end((err, res) => {
-        // res will contain array with one user
-        if (err) return done(err);
-        const data = res.body.data.adddepartment;
-        assert.equal(data.hasOwnProperty("id"), true);
-        assert.equal(data.hasOwnProperty("dept_name"), true);
-        done();
-      });
-  });
-
-  it("Mutation departament validate name", async function () {
-    const name = "Dario";
-    let Departament = require("../models/departments").Department;
-    const existDepartament = await Departament.findOne({
-      dept_name: name,
-    });
-    console.log("Entra", existDepartament);
-    if (existDepartament == null) {
-      await Departament.create({
-        dept_name: name,
-      });
-    }
-    request
-      .post("/graphql")
-      .send({
-        query: `mutation{
-                adddepartment(input: {
-                    dept_name:"${name}"
-                }){
-                    id
-                    dept_name
-                }
-            }`})
-            .expect(200)
-            .end((err, res) => {
-                // res will contain array with one user
-                if (err) return done(err);
-                const data = res.body.errors[0];
-                assert.equal(data.message, 'DepartmentType');
-                assert.equal(data.extensions.code, 'dept_name is already exist');
-                assert.equal(data.extensions.status, 'Can not create a department with same name');
-            });
-    });
-
-    it("Probando Query department retorna un array",function(done){
-        request 
-        .get("/graphql")
-        .send({query:`{
-            departments{
-                id
-                dept_name
-            }}
-        `})
-        .expect(200)
-        .end((err,res)=> {
-            if(err) return done(err);
-            assert.equal(Array.isArray(res.body.data.departments),true);
-            done();
-        });
-    });
 
     it("Probando Mutation employee", function(done){
         const dni = Math.random()
@@ -159,6 +84,7 @@ describe("Test de ejemplo", function () {
             const data= res.body.data.employee
             //console.log('MIRA LA DATAAAAAAAAAAAAAAA',data);
             if(err) return done(err);
+            //isObject(data);
             assert.equal(isObject(res.body.data.employee),true);
             assert.equal(data.hasOwnProperty("id"),true);
             assert.equal(data.hasOwnProperty("dni"),true);
@@ -171,14 +97,22 @@ describe("Test de ejemplo", function () {
     });
 
   it("addemployee validation DNI", async function () {
-    const name = "Matias2";
-    const dni = "343243282222363"
+    const dni = "123456"
+    let Employee = require('../models/employee').Employee;
+    const existEmployee = await Employee.findOne({
+        dni
+    })
+    if(!existEmployee){
+        await Employee.create({
+            dni
+        })
+    }
     request
       .post("/graphql")
       .send({
         query: `
         mutation {
-              addemployee(input: {dni: "${dni}", first_name: "${name}"}) {
+              addemployee(input: {dni: "${dni}"}) {
               id
             }
           }
