@@ -5,8 +5,6 @@ const {Employee} = require('../models/employee');
 
 const ValidateDni = {
     validate: async function(typename, originalObject, materializeObject){
-        console.log('Mira esta lineaaaaa',materializeObject);
-        
         const employee = await Employee.findOne({
             dni: materializeObject.dni
         });
