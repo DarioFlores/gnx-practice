@@ -2,6 +2,11 @@ const assert = require("assert");
 const url = "http://localhost:3000";
 const request = require("supertest")(url);
 let Departament = require("../models/departments").Department;
+const fs = require('fs');
+const dirName= `${__dirname}/query`
+const {
+    ValidateName
+} = require('../validators/department.validator')
 
 describe("================ Prueba de los departamentos ================", function () {
 
@@ -135,4 +140,20 @@ describe("================ Prueba de los departamentos ================", functi
                 done();
             });
     });
+
+    it("Should THROW ERROR when try create an department with same name",async function(){
+        const dept_name='Informatica';
+        Departament.create({
+            dept_name
+        });
+        const typeName='departmentType';
+        const originalObject= '';
+        const materializeObject= JSON.parse(fs.readFileSync(`${dirName}/department1.json`));
+        try {
+            await ValidateName.validate(typeName,originalObject,materializeObject);
+            throw new Error('Test Failed');
+        } catch (error) {
+            console.log('ERROR DEL MISMO NOMBRE DE DEPARTAMENTO',error.extensions.code);
+        }
+    })
 });
