@@ -55,7 +55,7 @@ describe("Test de ejemplo", function () {
         .end((err,res)=> {
             if(err) return done(err);
             const data = res.body.data.addemployee
-            console.log(data);
+            //console.log(data);
             assert.equal(data.hasOwnProperty("id"),true);
             assert.equal(data.hasOwnProperty("dni"),true);
             assert.equal(data.hasOwnProperty("first_name"),true);
@@ -143,12 +143,19 @@ describe("Test de ejemplo", function () {
 
   it('Should THROW ERROR when try create an employee with same dni', async function(){
     const dni = '39012682'
-    let Employee = require('../models/employee').Employee
-    const createEmployee = await Employee.create({
-      dni
-    })
+    let Employee = require('../models/employee').Employee;
+    const existEmployee = await Employee.findOne({
+          dni
+      })
+    if(!existEmployee){
+          await Employee.create({
+              dni
+          })
+    }
+    //const createEmployee = await Employee.create({
+    //  dni
+    //})
     //console.log('LO QUE TIENE EL DIRNAME',dirName);
-    
     const typeName = 'employeeType'
     const originalObject= ''
     const materializeObject=JSON.parse(fs.readFileSync(`${dirName}/employee1.json`));
@@ -170,7 +177,7 @@ describe("Test de ejemplo", function () {
       await ValidateAge.validate(typeName,originalObject,materializeObject);
       throw new Error('Test Failed');
     } catch (error) {
-      console.log('ERROR DE LA EDAD',error);
+      console.log('ERROR DE LA EDAD',error.extensions.code);
     }
   })
 });
