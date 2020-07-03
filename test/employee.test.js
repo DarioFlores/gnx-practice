@@ -2,6 +2,14 @@ const assert = require("assert");
 const { isObject } = require("util");
 const url = "http://localhost:3000";
 const request = require("supertest")(url);
+const fs = require('fs');
+
+const {
+  ValidateDni, ValidateAge
+} = require('../validators/employee.validator');
+const EmployeeType = require("../types/employee.type");
+
+const dirName= `${__dirname}/query`
 
 describe("Test de ejemplo", function () {
   it("Retorna un array Query employess", function (done) {
@@ -132,4 +140,37 @@ describe("Test de ejemplo", function () {
         }
       });
   });
+
+  it('Should THROW ERROR when try create an employee with same dni', async function(){
+    const dni = '39012682'
+    let Employee = require('../models/employee').Employee
+    const createEmployee = await Employee.create({
+      dni
+    })
+    //console.log('LO QUE TIENE EL DIRNAME',dirName);
+    
+    const typeName = 'employeeType'
+    const originalObject= ''
+    const materializeObject=JSON.parse(fs.readFileSync(`${dirName}/employee1.json`));
+    //console.log('EL JSON QUE LEO',materializeObject)
+    try {
+      await ValidateDni.validate(typeName,originalObject,materializeObject);
+      throw new Error('Test Failed');
+    } catch (error) {
+      console.log('EL ERROR DEL CATCH',error.extensions.code)
+      //expect(error.toString()).to.equal('Error: DNI is already exist')
+    }
+  });
+
+  it('Should THROW ERROR when try create an employee with age under 18 years old',async function(){
+    const typeName= 'employeeType';
+    const originalObject = '';
+    const materializeObject = JSON.parse(fs.readFileSync(`${dirName}/employee1.json`))
+    try {
+      await ValidateAge.validate(typeName,originalObject,materializeObject);
+      throw new Error('Test Failed');
+    } catch (error) {
+      console.log('ERROR DE LA EDAD',error);
+    }
+  })
 });

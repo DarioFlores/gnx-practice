@@ -23,7 +23,7 @@ const DeptEmployeeType = new GraphQLObjectType({
     description: 'Represent deptEmployee assigned to a employee and department',
     extensions: {
         validations: {
-            CREATE: [ValidateDateinterval,CantBeSameEmployeeWithTwoTitlesDeptEmployee,validateDateIntervalEmployee],
+            CREATE: [ValidateDateinterval,CantBeSameEmployeeWithTwoTitlesDeptEmployee],
             UPDATE: [ValidateDateinterval,CantBeSameEmployeeWithTwoTitlesDeptEmployee]
         }
     },
