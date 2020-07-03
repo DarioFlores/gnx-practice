@@ -8,5 +8,7 @@ const titleFields = {
 };
 const titleSchema = new Schema(titleFields);
 const Title = mongoose.model("Title", titleSchema);
-
+if(!Title.collection.collection){
+    Title.createCollection();
+}
 module.exports = { titleFields, Title };
