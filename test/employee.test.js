@@ -11,7 +11,7 @@ const EmployeeType = require("../types/employee.type");
 
 const dirName= `${__dirname}/query`
 
-describe("Test de ejemplo", function () {
+describe("##########################TEST DE EMPLEADOS############################", function () {
   it("Retorna un array Query employess", function (done) {
     request
       .get("/graphql")
